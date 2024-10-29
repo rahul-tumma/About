@@ -1,0 +1,136 @@
+/**
+ * Custom theme for Shiki syntax highlighting
+ */
+
+/* Define CSS variables for the theme */
+:root {
+  --shiki-foreground: #c5c8c6;
+  --hover-background: #2c313c;
+  --shiki-token-constant: #99cc99;
+  --shiki-token-string: #24e33a;
+  --shiki-token-comment: #7c7c7c;
+  --shiki-token-keyword: #5918df;
+  --shiki-token-parameter: #c5c8c6;
+  --shiki-token-function: #eeff31;
+  --shiki-token-string-expression: #24e33a;
+  --shiki-token-punctuation: #c5c8c6;
+  --shiki-token-link: #96cbfe;
+}
+
+/* Base styles for code blocks */
+.code-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.code-container pre > code {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.code-container pre > code .line:hover{
+  background-color: var(--hover-background);
+}
+/* Line numbers styles */
+.code-container pre > code {
+  counter-reset: line;
+}
+
+.code-container pre > code .line {
+  display: inline-block;
+  width: 100%;
+  padding-left: 3.5rem;
+  position: relative;
+}
+
+.code-container pre > code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  position: absolute;
+  left: 0;
+  width: 2.5rem;
+  text-align: right;
+  color: #636363;
+  padding-right: 1rem;
+  user-select: none;
+}
+
+
+.code-container pre {
+  color: var(--shiki-foreground);
+  background-color: var(--shiki-background);
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Inconsolata, Monaco, Consolas, "Courier New", Courier, monospace;
+  margin: 0.5em 0;
+  padding: 1em;
+  overflow: auto;
+  border-radius: 0.3em;
+  line-height: 1.5;
+  word-break: break-word;
+  white-space: pre-wrap;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Token styles using Shiki CSS variables */
+.code-container :where(.constant, .boolean) {
+  color: var(--shiki-token-constant) !important;
+}
+
+.code-container :where(.string, .char, .builtin) {
+  color: var(--shiki-token-string) !important;
+}
+
+.code-container :where(.comment, .prolog, .doctype, .cdata) {
+  color: var(--shiki-token-comment) !important;
+}
+
+.code-container :where(.property, .keyword, .tag) {
+  color: var(--shiki-token-keyword) !important;
+}
+
+.code-container :where(.parameter) {
+  color: var(--shiki-token-parameter) !important;
+}
+
+.code-container :where(.function) {
+  color: var(--shiki-token-function) !important;
+  text-decoration: none;
+}
+
+.code-container :where(.class-name) {
+  color: var(--shiki-token-function) !important;
+  text-decoration: underline;
+}
+
+.code-container :where(.punctuation) {
+  color: var(--shiki-token-punctuation) !important;
+}
+
+.code-container :where(.link) {
+  color: var(--shiki-token-link) !important;
+}
+
+/* Special token styles */
+.code-container :where(.number) {
+  color: #ff73fd !important;
+}
+
+.code-container :where(.operator) {
+  color: #ededed !important;
+}
+
+.code-container :where(.entity) {
+  color: #ffffb6 !important;
+  cursor: help;
+}
+
+/* Responsive styles */
+@media (max-width: 640px) {
+  .code-container pre {
+    font-size: 14px;
+    padding: 0.75em;
+  }
+}
